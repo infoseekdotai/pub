@@ -4,7 +4,7 @@ interface:
   icon_small: "./assets/flight-agents.svg"
   icon_large: "./assets/flight-agents.svg"
   brand_color: "#0F766E"
-  default_prompt: "Use $flight-agent-matrix to compare flight options across major OTAs and rank the best itineraries."
+  default_prompt: "Use $infoseek-flight-agent-matrix to compare flight options across major OTAs and rank the best itineraries."
 
 dependencies:
   tools:

@@ -1,5 +1,5 @@
 ---
-name: flight-agent-matrix
+name: infoseek-flight-agent-matrix
 description: Search flights across major OTAs, rank the best itineraries, and optionally email an HTML summary to the authenticated Gmail account.
 ---
 

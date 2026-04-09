@@ -1,6 +1,6 @@
 # Infoseek Flight Agent Matrix
 
-`flight-agent-matrix` is a Codex skill for comparing flight options across major OTAs, ranking the best itineraries, and optionally emailing a summary to the authenticated Gmail account.
+`infoseek-flight-agent-matrix` is a Codex skill for comparing flight options across major OTAs, ranking the best itineraries, and optionally emailing a summary to the authenticated Gmail account.
 
 This skill is designed to work with an Infoseek MCP server. Without it, the skill has limited value on its own.
 
@@ -23,7 +23,7 @@ Infoseek will reply with setup details for your own custom instance.
 Copy this folder into your local Codex skills directory as:
 
 ```text
-$CODEX_HOME/skills/flight-agent-matrix
+$CODEX_HOME/skills/infoseek-flight-agent-matrix
 ```
 
 Then restart Codex so the skill is loaded.

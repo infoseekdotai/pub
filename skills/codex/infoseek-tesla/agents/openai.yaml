@@ -1,0 +1,19 @@
+interface:
+  display_name: "Infoseek Tesla"
+  short_description: "Helpful Tesla assistant with smart car workflows"
+  icon_small: "./assets/tesla.svg"
+  icon_large: "./assets/tesla.svg"
+  default_prompt: "Use $infoseek-tesla as a helpful Tesla assistant for things like climate, battery, navigation, or sending my next meeting location to the car."
+  brand_color: "#CC0000"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "infoseek_tesla"
+      description: "Tesla vehicle control MCP tools"
+    - type: "mcp"
+      value: "infoseek_gmail"
+      description: "Optional Gmail and Calendar tools for advanced Tesla workflows"
+
+policy:
+  allow_implicit_invocation: true
