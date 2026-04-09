@@ -1,0 +1,16 @@
+interface:
+  display_name: "Infoseek Flight Agent Matrix"
+  short_description: "Compare OTA fares and optionally email a summary"
+  icon_small: "./assets/flight-agents.svg"
+  icon_large: "./assets/flight-agents.svg"
+  brand_color: "#0F766E"
+  default_prompt: "Use $flight-agent-matrix to compare flight options across major OTAs and rank the best itineraries."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "infoseek_flight_agent_matrix"
+      description: "Search and compare flights across providers"
+
+policy:
+  allow_implicit_invocation: true
