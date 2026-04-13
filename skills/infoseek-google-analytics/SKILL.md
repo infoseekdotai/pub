@@ -157,29 +157,42 @@ users              26             56 (+115%)
 
 Render:
 
-- one table for `weeks`
-- one table for `rows`
-- one table for `other` if present
-- one table for `totals`
+- one readable fixed-width text matrix inside a fenced code block
 
-Use these columns:
+Format it as a week-by-week matrix:
 
-- `weeks` table:
-  - `start_date`
-  - `end_date`
-- `rows` table:
-  - `source_medium`
-  - `weekly_sessions`
-  - `total_sessions`
-  - `latest_week_sessions`
-- `other` table:
-  - `source_medium`
-  - `weekly_sessions`
-  - `total_sessions`
-  - `latest_week_sessions`
-- `totals` table:
-  - `weekly_sessions`
-  - `total_sessions`
+- first column: `Source / Medium`
+- one column per week
+- each week column should use a two-line header:
+  - first line: `start_date`
+  - second line: `end_date`
+- after the week columns, add summary columns when present:
+  - `Total`
+  - `Latest`
+- each row should show the raw weekly session counts in order
+- include a final totals row when `totals.weekly_sessions` is present
+
+Formatting rules:
+
+- use a fenced `text` code block so columns stay aligned
+- keep sources as rows and weeks as columns
+- include all returned weeks in order
+- include all returned rows in order
+- if the tool returns an `other` section, render it as additional rows after the main rows
+- if the tool returns `total_sessions`, include it in the `Total` column
+- if the tool returns `latest_week_sessions`, include it in the `Latest` column
+
+Example shape:
+
+```text
+Source / Medium      2026-02-15   2026-02-22   Total   Latest
+                     2026-02-21   2026-02-28   Sess.   Week
+------------------------------------------------------------
+(direct) / (none)    25           44           69      44
+google / organic     0            32           32      32
+------------------------------------------------------------
+Total Sessions       25           76           101     76
+```
 
 ## Email Follow-Up Workflow
 
