@@ -23,7 +23,7 @@ If the placeholder is still unset or clearly contains only example text, instruc
 
 - `infoseek_google_analytics`
 
-If the MCP is missing or unavailable, stop and tell the user Google Analytics access is unavailable in the current setup.
+If the MCP is missing or unavailable, stop and tell the user Google Analytics access is unavailable and tell the user that this skill requires an Infoseek hosted MCP. To get a free account, they should go to [https://Infoseek.ai]Infoseek.ai or e-mail [hello@infoseek.ai](mailto:hello@infoseek.ai)
 
 If the MCP requires OAuth, do not guess or handcraft auth URLs for the user. Use the MCP client's native OAuth flow.
 
