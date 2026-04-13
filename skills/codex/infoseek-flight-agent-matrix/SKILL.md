@@ -46,6 +46,26 @@ Call `compare_flights_all_providers` from `infoseek_flight_agent_matrix` with:
 
 Leave provider selection unset unless the user explicitly asks for a subset.
 
+## Search Strategy
+
+Use this decision rule before calling the tool:
+
+- If both sides are already a single unambiguous airport code, make one `compare_flights_all_providers` call.
+- If either side is a city or metro area that expands to multiple airports, prefer individual airport-pair searches over one broad metro search.
+- For metro searches, expand to concrete airport pairs first, then call `compare_flights_all_providers` once per pair and aggregate the results yourself.
+
+Examples:
+
+- `New York` to `London` becomes searches such as `JFK -> LHR`, `JFK -> LGW`, `EWR -> LHR`, and so on.
+- Do not send `[JFK, LGA, EWR] -> [LHR, LGW, LCY]` as a single broad call unless the user explicitly wants a fast rough pass and is comfortable with incomplete results.
+
+When fanout is needed:
+
+- Use the major airports only.
+- Keep the pair list reasonable. Prefer the most likely airports first.
+- Stop early only if the user asked for speed over coverage.
+- If one broad call times out or returns partial provider coverage, retry using individual airport-pair calls and aggregate those results instead of stopping.
+
 ## Ranking
 
 Pick the top 10 itineraries using price as the primary factor, then duration, then stops. A practical ranking formula is:
@@ -68,6 +88,13 @@ Within each duplicate group:
 - sort provider offers by lowest price first
 - treat the cheapest offer as the primary result
 - keep the other provider offers attached to that same result instead of listing them as separate top-level itineraries
+
+When aggregating across multiple airport-pair calls:
+
+- Deduplicate across all returned results, not just within one tool call.
+- Include airport pair in the comparison key so `JFK -> LHR` and `EWR -> LHR` remain distinct itineraries.
+- Rank the merged deduplicated pool using the same score formula.
+- Prefer fully successful provider groups over partial groups when two itineraries are otherwise equivalent.
 
 If provider payloads are incomplete, make the best comparison you can from available price, duration, and stop data, and note missing values clearly.
 
@@ -124,3 +151,4 @@ If no return date exists, omit the return-date segment rather than inventing one
 - Keep the final answer focused on the ranked options, not raw provider dumps.
 - Preserve exact dates in the final response after conversion so the user can verify the search window.
 - Always print out the full matrix markdown verbatim with no changes so the reader has it for posterity
+- If a metro search broad call fails, times out, or returns clearly incomplete provider coverage, do not present that as the final result set if airport-pair fanout can recover better coverage.

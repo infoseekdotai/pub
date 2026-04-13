@@ -1,0 +1,15 @@
+interface:
+  display_name: "Infoseek Google Analytics"
+  short_description: "Helpful GA4 reporting assistant with optional Gmail delivery"
+  icon_small: "./assets/google_analytics-icon.svg"
+  icon_large: "./assets/google_analytics-icon.svg"
+  default_prompt: "Use $infoseek-google-analytics as a helpful analytics assistant for GA4 weekly reports, markdown tables, and optional email delivery to my Gmail."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "infoseek_google_analytics"
+      description: "Google Analytics MCP tools for weekly reporting and optional Gmail delivery"
+
+policy:
+  allow_implicit_invocation: true
