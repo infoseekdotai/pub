@@ -123,9 +123,18 @@ Formatting rules:
 - For grouped duplicate-provider offers, show the cheapest provider first as the main row for that itinerary. 
 - Immediately below the main itinerary row, add one additional comparison row per duplicate provider offer. For these secondary rows leave *all columns empty* except Booking Link and Notes, so that the row is not repetitive.
 - For duplicate-provider comparison rows, make it visually clear in `Notes` that the row is an alternate booking option for the itinerary above.
+- Always render each alternate provider booking link on its own physical table row directly under the primary itinerary row. Never combine multiple alternate provider links into one cell or hide them inside the primary row's `Notes`.
 - Label booking links with the destination domain, for example `google.com`, `skyscanner.com`, or `booking.com`.
 - Do not hide duplicate-provider offers only in `Notes`; they should appear as their own comparison rows directly under the main itinerary.
 - If a value is unavailable, use `—`.
+
+Example for a grouped itinerary:
+
+| Price | Airline | From/To | Depart Time | Arrival Time | Duration | Stops | Booking Link | Notes |
+|---|---|---|---|---|---|---|---|---|
+| $1297 | Asiana Airlines, Delta | HKG to SEA | Thu, May 14 1:00 PM | Thu, May 14 1:11 PM | 15 hr 11 min | 1 stop | google.com | Best overall by price and duration. |
+|  |  |  |  |  |  |  | skiplagged.com | Alternate booking option for the itinerary above at the same listed price. |
+|  |  |  |  |  |  |  | booking.com | Alternate booking option for the itinerary above at $1311 with fare and baggage details. |
 
 ## Email Step
 
